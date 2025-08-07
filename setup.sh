@@ -7,6 +7,7 @@ cp .bash_aliases ~/.bash_aliases
 sudo add-apt-repository ppa:neovim-ppa/stable
 sudo apt update
 sudo apt install neovim
+ln -s /home/sphillips/Documents/my-config/nvim/ ~/.config/nvim
 # Install tmux
 sudo apt install tmux
 mkdir -p ~/.tmux/plugins
