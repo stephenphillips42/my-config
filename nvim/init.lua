@@ -54,6 +54,9 @@ if vim.fn.executable("python3") > 0 then
 end
 
 -- Custom commands
+--- Movement
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
 --- Search
 vim.keymap.set("n", "<F2>", ":set spell! spell?<CR>")
 vim.keymap.set("n", "<F4>", "hlsearch! hlsearch?<CR>")
