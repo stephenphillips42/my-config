@@ -4,7 +4,20 @@ require("mason-lspconfig").setup()
 
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("ols")
-vim.lsp.enable("pylsp")
+vim.lsp.config('pylsp', {
+  settings = {
+    pylsp = {
+      plugins = {
+        pycodestyle = { enabled = false }, -- Ruff will handle E501
+        pyflakes   = { enabled = false },
+        mccabe     = { enabled = false },
+      },
+    },
+  },
+  root_dir = function(fname)
+    return vim.fs.root(fname, { 'pyproject.toml', '.git' }) or vim.uv.cwd()
+  end,
+})
 vim.lsp.enable("zls")
 vim.lsp.enable("clangd")
 vim.lsp.enable("jsonls")

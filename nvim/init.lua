@@ -1,6 +1,6 @@
 -- Basics
 vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
+vim.g.maplocalleader = ","
 
 vim.opt.showmatch = true        -- show matching brackets.
 vim.opt.mouse="v"               -- middle-click paste with mouse
@@ -101,10 +101,12 @@ require("nvim-treesitter.configs").setup({
                          "vim", "vimdoc", "query", "javascript", "html", },
     sync_install = false,
     highlight = { enable = true },
-    indent = { enable = true },  
+    indent = { enable = true },
 })
 
 -- LSP and snippet related
 require("lsp")
 require("complete")
+require("snip")
+require("misc")
 

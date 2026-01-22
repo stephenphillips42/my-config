@@ -35,7 +35,7 @@ return {
             vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
             vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
             vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
-            vim.keymap.set("n", "<leader>fs", builtin.symbols, { desc = "Telescope help tags" })
+            vim.keymap.set("n", "<leader>fy", builtin.symbols, { desc = "Telescope help tags" })
             vim.keymap.set("n", "<leader>e",  builtin.diagnostics, { desc = "Diagnostics" })
             vim.keymap.set(
                 "n", "<leader>fa",
@@ -89,4 +89,20 @@ return {
             "nvim-neotest/nvim-nio"
         }
     },
+    {
+        "nvim-lualine/lualine.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        config = function()
+            require('lualine').setup()
+        end,
+    },
+    {
+      "lervag/vimtex",
+      lazy = false,     -- we don't want to lazy load VimTeX
+      -- tag = "v2.15", -- uncomment to pin to a specific release
+      init = function()
+        -- VimTeX configuration goes here, e.g.
+        vim.g.vimtex_view_method = "zathura"
+      end
+    }
 }

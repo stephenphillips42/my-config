@@ -1,0 +1,207 @@
+-- snippet box "Box"
+-- `!p snip.rv = '┌' + '─' * (len(t[1]) + 2) + '┐'`
+-- │ $1 │
+-- `!p snip.rv = '└' + '─' * (len(t[1]) + 2) + '┘'`
+-- $0
+-- endsnippet
+-- 
+-- # Environments
+-- 
+-- # Latex commands
+-- snippet beg "begin{} / end{}" i
+-- \begin{$1}
+--   $2
+-- \end{$1}$0
+-- endsnippet
+-- 
+-- snippet align "Align*" b
+-- \begin{align*}
+--   $1
+-- \end{align*}$0
+-- endsnippet
+-- 
+-- snippet fig "figure" b
+-- \begin{figure}
+-- \begin{center}
+--   $0
+--   \caption{$1}
+--   \label{fig:$2}
+-- \end{center}
+-- \end{figure}
+-- endsnippet
+-- 
+-- snippet sec "Section" b
+-- \section{$1}$0
+-- endsnippet
+-- 
+-- snippet incg "Include graphics" b
+-- \includegraphics[width=$2]{$1}$0
+-- endsnippet
+-- 
+-- # Math mode
+-- snippet mk "Math" wA
+-- $${1}$`!p
+-- if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+--     snip.rv = ' '
+-- else:
+--     snip.rv = ''
+-- `$2
+-- endsnippet
+-- 
+-- snippet dm "Math" w
+-- \[
+--   $1
+-- \] $0
+-- endsnippet
+-- 
+-- # Subscripts
+-- snippet '([A-Za-z])(\d)' "auto subscript" wr
+-- `!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
+-- endsnippet
+-- 
+-- snippet '([A-Za-z])_(\d\d)' "auto subscript2" wr
+-- `!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
+-- endsnippet
+--     
+-- # Powers 
+-- snippet sr "^2" iA
+-- ^2  
+-- endsnippet
+-- snippet cb "^3" iA
+-- ^3
+-- endsnippet
+-- 
+-- snippet compl "complement" i
+-- ^{c}
+-- endsnippet
+-- 
+-- snippet td "superscript" i
+-- ^{$1}$0
+-- endsnippet
+-- 
+-- # Fractions
+-- snippet // "Fraction" i
+-- \\frac{$1}{$2}$0
+-- endsnippet
+-- 
+-- snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "Fraction" wr
+-- \\frac{`!p snip.rv = match.group(1)`}{$1}$0
+-- endsnippet
+-- 
+-- priority 1000
+-- snippet '^.*\)/' "() Fraction" wr
+-- `!p
+-- stripped = match.string[:-1]
+-- depth = 0
+-- i = len(stripped) - 1
+-- while True:
+--   if stripped[i] == ')': depth += 1
+--   if stripped[i] == '(': depth -= 1
+--   if depth == 0: break;
+--   i -= 1
+-- snip.rv = stripped[0:i] + "\\frac{" + stripped[i+1:-1] + "}"
+-- `{$1}$0
+-- endsnippet
+-- 
+-- snippet // "Fraction" iA
+-- \\frac{${VISUAL}}{$1}$0
+-- endsnippet
+-- 
+-- # Prefixes
+-- priority 10
+-- snippet "bar" "bar" ri
+-- \overline{$1}$0
+-- endsnippet
+-- 
+-- priority 100
+-- snippet "([a-zA-Z])bar" "bar" ri
+-- \overline{`!p snip.rv=match.group(1)`}
+-- endsnippet
+-- 
+-- priority 10
+-- snippet "hat" "hat" ri
+-- \hat{$1}$0
+-- endsnippet
+-- 
+-- priority 100
+-- snippet "([a-zA-Z])hat" "hat" ri
+-- \hat{`!p snip.rv=match.group(1)`}
+-- endsnippet
+-- 
+-- snippet "(\\?\w+)(,\.|\.,)" "Vector postfix" ri
+-- \vec{`!p snip.rv=match.group(1)`}
+-- endsnippet
+-- 
+-- snippet bigfun "Big function" i
+-- \begin{align*}
+--   $1: $2 &\longrightarrow $3 \\\\
+--   $4 &\longmapsto $1($4) = $0
+-- .\end{align*}
+-- endsnippet
+-- 
+-- # Latex Font Modifiers
+-- snippet bb "Math bb style" i
+-- \\mathbb{$1}$0
+-- endsnippet
+-- 
+-- snippet bf "Math bf style" i
+-- \\mathbf{$1}$0
+-- endsnippet
+-- 
+-- snippet tb "Text bf style" i
+-- \\textbf{$1}$0
+-- endsnippet
+-- 
+-- # Surround
+-- snippet lrp "Left-right parenthesis" i
+-- \\left($1\\right)$0
+-- endsnippet
+-- 
+-- snippet lrs "Left-right square brackets" i
+-- \\left[$1\\right]$0
+-- endsnippet
+-- 
+-- snippet lrc "Left-right curly brackets" i
+-- \\left\\{$1\\right\\}$0
+-- endsnippet
+-- 
+-- snippet lra "Left-right absolute values" i
+-- \\left|$1\\right|$0
+-- endsnippet
+-- 
+-- snippet lrn "Left-right norm" i
+-- \\left\\|$1\\right\\|$0
+-- endsnippet
+-- 
+-- # Other
+-- snippet tr "Trace" i
+-- \\text{tr}\\left($1\\right)$0
+-- endsnippet
+-- 
+-- snippet ex "Expectation" i
+-- \\mathbb{E}\\left[$1\\right]$0
+-- endsnippet
+-- 
+-- snippet exw "Expectation with respect to" i
+-- \\mathbb{E}_{$1}\\left[$2\\right]$0
+-- endsnippet
+-- 
+-- snippet xx "Variable x" i
+-- \\mathbf{x}$0
+-- endsnippet
+-- 
+-- snippet th "Theta" i
+-- \\theta$0
+-- endsnippet
+-- 
+-- snippet pmat "pmatrix" i
+-- \begin{pmatrix}
+--   $1
+-- \end{pmatrix}$0
+-- endsnippet
+-- 
+-- snippet bmat "bmatrix" i
+-- \begin{bmatrix}
+--   $1
+-- \end{bmatrix}$0
+-- endsnippet
