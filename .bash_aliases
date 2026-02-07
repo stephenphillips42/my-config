@@ -9,6 +9,26 @@ alias py='python3'
 alias gop='xdg-open'
 alias pygrep='egrep -nHri --include=*py'
 alias cppgrep='grep -nHri --include=*cpp --include=*h'
+## Functions
+sv() {
+    # 1. Check if a specific argument was provided
+    if [ -n "$1" ]; then
+        if [ -d "$1" ]; then
+            source "$1/bin/activate"
+        else
+            echo "Error: Directory '$1' does not exist."
+            return 1
+        fi
+    # 2. If no argument, check for default names
+    elif [ -d ".venv" ]; then
+        source .venv/bin/activate
+    elif [ -d "venv" ]; then
+        source venv/bin/activate
+    else
+        echo "Error: No argument provided and no '.venv' or 'venv' directory found."
+        return 1
+    fi
+}
 ## Basic Path
 export PATH="$PATH:/home/sphillips/.local/bin"
 
