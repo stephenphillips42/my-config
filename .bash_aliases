@@ -29,6 +29,7 @@ sv() {
         return 1
     fi
 }
+complete -d sv
 ## Basic Path
 export PATH="$PATH:/home/sphillips/.local/bin"
 
