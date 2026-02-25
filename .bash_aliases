@@ -9,7 +9,23 @@ alias py='python3'
 alias gop='xdg-open'
 alias pygrep='egrep -nHri --include=*py'
 alias cppgrep='grep -nHri --include=*cpp --include=*h'
-## Functions
+## Python venv Functions
+mkenv () {
+    # 1. Check if a specific argument was provided
+    if [ -n "$1" ]; then
+        if [ -d "$1" ]; then
+            echo "Directory $1 already exists"
+        else
+            echo "Making Python virutal environment at $1"
+            python -m venv $1
+        fi
+    # 2. If no argument, check for default names
+    elif [ -d ".venv" ]; then
+        echo "Directory .venv already exists"
+    else
+        python -m venv ".venv"
+    fi
+}
 sv() {
     # 1. Check if a specific argument was provided
     if [ -n "$1" ]; then
