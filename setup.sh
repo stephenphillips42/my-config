@@ -13,5 +13,8 @@ ln -s $mydir/nvim/ ~/.config/nvim
 sudo apt install tmux
 mkdir -p ~/.tmux/plugins
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+# Git difftool: use neovim, allow editing during diff
+git config --global diff.tool nvimdiff
+git config --global difftool.prompt false
 
 
