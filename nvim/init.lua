@@ -96,13 +96,23 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins")
 
 -- Ensure proper order of nvim-treesitter
-require("nvim-treesitter.configs").setup({
-    ensure_installed = { "c", "cpp", "python", "lua", "rst",
-                         "vim", "vimdoc", "query", "javascript", "html", },
-    sync_install = false,
-    highlight = { enable = true },
-    indent = { enable = true },
+local parsers = {
+    'c', 'cpp', 'make', 'dockerfile', 'bash', 'nginx', 'markdown', 'asm',
+    'git_config', 'git_rebase', 'gitattributes', 'gitcommit', 'gitignore',
+    'haskell', 'haskell_persistent', 'json', 'lua', 'python', 'go', 'goctl',
+    'godot_resource', 'gomod', 'gosum', 'gotmpl', 'gowork'
+}
+
+require'nvim-treesitter'.install(parsers)
+vim.api.nvim_create_autocmd('FileType', {
+   pattern = parsers,
+   callback = function() vim.treesitter.start() end,
 })
+require('nvim-treesitter').setup {
+  -- Directory to install parsers and queries to
+  -- (prepended to `runtimepath` to have priority)
+  install_dir = vim.fn.stdpath('data') .. '/site'
+}
 
 -- LSP and snippet related
 require("lsp")
