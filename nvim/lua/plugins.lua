@@ -103,5 +103,15 @@ return {
         -- VimTeX configuration goes here, e.g.
         vim.g.vimtex_view_method = "zathura"
       end
+    },
+    {
+        'andymass/vim-matchup',
+        init = function()
+            -- modify your configuration vars here
+            -- window (in lines, in each direction from cursor) that matchup searches
+            -- for matches; too small and matches for top-level tags (whose closing
+            -- tag can be far from the cursor) won't be found
+            vim.g.matchup_treesitter_stopline = 2000
+        end,
     }
 }

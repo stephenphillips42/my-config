@@ -21,6 +21,17 @@ vim.lsp.config('pylsp', {
 vim.lsp.enable("zls")
 vim.lsp.enable("clangd")
 vim.lsp.enable("jsonls")
+
+local max_lsp_file_size = 150 * 1024 -- bytes; larger files never get the client started
+vim.lsp.config('html', {
+  root_dir = function(bufnr, on_dir)
+    local name = vim.api.nvim_buf_get_name(bufnr)
+    if name ~= '' and vim.fn.getfsize(name) > max_lsp_file_size then
+      return -- don't call on_dir(): the client never attaches for this buffer
+    end
+    on_dir(vim.fs.root(bufnr, { 'package.json', '.git' }) or vim.uv.cwd())
+  end,
+})
 vim.lsp.enable("html")
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
