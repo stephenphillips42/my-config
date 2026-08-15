@@ -1,6 +1,8 @@
 require("mason").setup()
 require("mason-nvim-dap").setup()
-require("mason-lspconfig").setup()
+require("mason-lspconfig").setup({
+  ensure_installed = { "lua_ls", "ols", "pylsp", "zls", "clangd", "jsonls", "html" },
+})
 
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("ols")
