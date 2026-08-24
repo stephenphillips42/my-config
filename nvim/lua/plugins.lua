@@ -102,6 +102,9 @@ return {
       init = function()
         -- VimTeX configuration goes here, e.g.
         vim.g.vimtex_view_method = "zathura"
+        -- disable: false-fails on nightly nvim builds like 0.12.0-dev,
+        -- which compare as older than the 0.12.4 the check requires
+        vim.g.vimtex_version_check = 0
       end
     },
     {

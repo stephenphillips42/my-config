@@ -9,6 +9,9 @@ alias py='python3'
 alias gop='xdg-open'
 alias pygrep='egrep -nHri --include=*py'
 alias cppgrep='grep -nHri --include=*cpp --include=*h'
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+
 ## Python venv Functions
 mkenv () {
     # 1. Check if a specific argument was provided
